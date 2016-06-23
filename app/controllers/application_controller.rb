@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_filter do
+  before_action do
     resource = controller_path.split('/').last.underscore.singularize.to_sym
     method = "#{resource}_params"
     params[resource] &&= send(method) if respond_to?(method, true)
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     redirect_to session[:return_to] || main_app.root_path, alert: "Você não tem permissão para acessar esta página" or return
   end
 
-  after_filter do
+  after_action do
     store_location
   end
 
