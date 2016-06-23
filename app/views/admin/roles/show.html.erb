@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h1>Exibir Papel</h1>
+</div>
+
+<div class="row">
+  <dl class="dl-horizontal">
+    <dt><strong>Nome:</strong></dt>
+    <dd><%= @role.nome %></dd>
+    <dt><strong>Apenas local:</strong></dt>
+    <dd><%= @role.uo_dependent? ? "Sim" : "Não" %></dd>
+    <dt><strong>Permissões:</strong></dt>
+    <dd>
+      <ul>
+        <%= @role.permissions.collect{ |p| "<li>#{p}</li>" }.join("").html_safe %>
+      </ul>
+    </dd>
+  </dl>
+</div>
+
+<div class="form-actions">
+  <%= link_to "Voltar", admin_roles_path, :class => 'btn btn-default'  %>
+  <% if @role.nome != "SuperAdmin" && @role.nome != "Admin" && @role.nome != "Aluno" %>
+    <%= link_to "Editar",
+                edit_admin_role_path(@role), :class => 'btn btn-default' %>
+    <%= link_to "Deletar",
+                admin_role_path(@role),
+                :method => 'delete',
+                :data => { :confirm => 'Tem certeza?' },
+                :class => 'btn btn-danger' %>
+  <% end %>
+</div>

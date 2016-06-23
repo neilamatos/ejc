@@ -1,0 +1,62 @@
+<%= form_for([:admin, @user], html: { role: "form", autocomplete: "off" }) do |f| %>
+  <%= error_message @user %>
+  <%= display_nested_errors @user %>
+
+  <div class="row">
+    <div class="form-group col-md-5">
+      <%= f.label :nome %>
+      <%= f.text_field :nome, class: 'form-control', title: tooltip_error_title(@user, :nome) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-5">
+      <%= f.label :email %>
+      <%= f.text_field :email, class: 'form-control', title: tooltip_error_title(@user, :email) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-5">
+      <%= f.label :telefone %>
+      <%= f.text_field :telefone, class: 'form-control', title: tooltip_error_title(@user, :telefone), :"data-mask" => '(99) 9999-99999' %>
+    </div>
+    </div>
+  <% display="" %>
+  <% if !@user.new_record? %>
+    <div class="row">
+      <div class="form-group col-md-5">
+        <a id="show_password" href="#">Alterar senha</a>
+      </div>
+    </div>
+    <% display="display:none;" %>
+  <% end %>
+
+  <div id="password" class="row" style="<%=display%>">
+    <div class="form-group col-md-5">
+      <%= f.label :password, "Senha" %>
+      <%= f.password_field :password, class: 'form-control', title: tooltip_error_title(@user, :password) %>
+    </div>
+  </div>
+  <div id="password_confirmation" class="row" style="<%=display%>">
+    <div class="form-group col-md-5">
+      <%= f.label :password_confirmation, "Confirmação de Senha" %>
+      <%= f.password_field :password_confirmation, class: 'form-control', title: tooltip_error_title(@user, :password_confirmation) %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-5">
+      <%= f.label :uo_id, class: 'control-label' %>
+      <%= f.select :uo_id, @uos, { include_blank: "Selecione uma Uo" }, title: tooltip_error_title(@user, :uo_id), class: "form-control" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-5">
+      <%= f.label :role_id %>
+      <%= f.select :role_id, @roles, { include_blank: "Selecione uma Role" }, title: tooltip_error_title(@user, :role_id), class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Salvar", :class => 'btn btn-primary' %>
+    <%= link_to "Cancelar", admin_users_path, :class => 'btn btn-default' %>
+  </div>
+<% end %>

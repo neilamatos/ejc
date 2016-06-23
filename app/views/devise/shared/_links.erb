@@ -1,0 +1,11 @@
+<%- if controller_name != 'sessions' %>
+  <div style="margin-top: 10px;">
+    <%= link_to "Login", new_session_path(resource_name) %><br />
+  </div>
+<% end -%>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <div style="margin-top: 10px;">
+    <%= link_to "Esqueceu sua senha?", new_password_path(resource_name) %><br />
+  </div>
+<% end -%>

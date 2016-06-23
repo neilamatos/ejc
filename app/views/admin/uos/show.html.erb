@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h1>Exibir Uo</h1>
+</div>
+
+<div class="row">
+  <dl class="dl-horizontal">
+    <dt><strong>Nome:</strong></dt>
+    <dd><%= @uo.nome %></dd>
+    <dt><strong>Sigla:</strong></dt>
+    <dd><%= @uo.sigla %></dd>
+    <dt><strong>Código da UG:</strong></dt>
+    <dd><%= @uo.codigo_ug %></dd>
+    <dt><strong>Cnpj:</strong></dt>
+    <dd><%= @uo.cnpj %></dd>
+    <dt><strong>Endereço:</strong></dt>
+    <dd><%= @uo.endereco %></dd>
+    <dt><strong>Complemento:</strong></dt>
+    <dd><%= @uo.complemento.blank? ? "-" : @uo.complemento %></dd>
+    <dt><strong>Bairro:</strong></dt>
+    <dd><%= @uo.bairro %></dd>
+    <dt><strong>Estado:</strong></dt>
+    <dd><%= @uo.estado %></dd>
+    <dt><strong>Cidade:</strong></dt>
+    <dd><%= @uo.cidade %></dd>
+    <dt><strong>Cep:</strong></dt>
+    <dd><%= @uo.cep.blank? ? "-" : @uo.cep %></dd>
+  </dl>
+</div>
+
+<div class="form-actions">
+  <%= link_to "Voltar", admin_uos_path, :class => 'btn btn-default'  %>
+  <%= link_to "Editar",
+              edit_admin_uo_path(@uo), :class => 'btn btn-default' %>
+  <%= link_to "Deletar",
+              admin_uo_path(@uo),
+              :method => 'delete',
+              :data => { :confirm => 'Tem certeza?' },
+              :class => 'btn btn-danger' %>
+</div>

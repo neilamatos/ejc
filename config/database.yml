@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: rails5_template_development
+  pool: 5
+  host: localhost
+  username: rails5_template
+  password: rails5_template
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: rails5_template_test
+  pool: 5
+  host: localhost
+  username: rails5_template
+  password: rails5_template
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: rails5_template_production
+  pool: 5
+  host: localhost
+  username: rails5_template
+  password: rails5_template
