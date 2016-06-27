@@ -45,29 +45,29 @@ end
 def eval_cancan_action(action)
   case action.to_s
   when "index"
-    name = 'list'
+    name = 'listar'
     cancan_action = "index" #let the cancan action be the actual method name
     action_desc = I18n.t :list
   when "new", "create"
-    name = 'create and update'
+    name = 'criar'
     cancan_action = "create"
     action_desc = I18n.t :create
   when "show"
-    name = 'view'
+    name = 'exibir'
     cancan_action = "show"
     action_desc = I18n.t :view
   when "edit", "update"
-    name = 'create and update'
+    name = 'editar'
     cancan_action = "update"
     action_desc = I18n.t :update
   when "delete", "destroy"
-    name = 'delete'
+    name = 'deletar'
     cancan_action = "destroy"
     action_desc = I18n.t :destroy
   else
     name = action.to_s
     cancan_action = action.to_s
-    action_desc = "Other: " < cancan_action
+    action_desc = "Outra: " < cancan_action
   end
   return name, cancan_action
 end

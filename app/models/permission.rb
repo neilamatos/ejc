@@ -5,7 +5,7 @@ class Permission < ActiveRecord::Base
   validates :action, presence: true, length: { in: 2..255 }
 
   def to_s
-    name = "#{self.subject_class} - #{self.action}"
+    name = "#{self.subject_class} - #{self.nome}"
     name = "#{self.controller_namespace}::#{name}" if !self.controller_namespace.blank?
     name
   end

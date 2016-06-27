@@ -20,14 +20,14 @@ class Admin::RolesController < ApplicationController
   # GET /roles/new
   def new
     @role = Role.new
-    @permissions = Permission.order("subject_class ASC, action ASC").all.collect { |p| [p, p.id]}
+    @permissions = Permission.order("subject_class ASC, nome ASC").all.collect { |p| [p, p.id]}
     @role_permissions = @role.permissions.collect{ |p| [p, p.id] }
   end
 
   # GET /roles/1/edit
   def edit
     @role_permissions = @role.permissions.collect{ |p| [p, p.id] }
-    @permissions = Permission.order("subject_class ASC, action ASC")
+    @permissions = Permission.order("subject_class ASC, nome ASC")
     if @role_permissions.length > 0
       @permissions = @permissions.where("id NOT IN (?)", @role.permissions.collect{ |p| p.id })
     end
@@ -93,7 +93,7 @@ class Admin::RolesController < ApplicationController
       end
 
       @role_permissions = permissions_attrs.collect{ |p| [p, p.id] }
-      @permissions = Permission.order("subject_class ASC, action ASC")
+      @permissions = Permission.order("subject_class ASC, nome ASC")
       if @role_permissions.length > 0
         @permissions = @permissions.where("id NOT IN (?)", permissions_attrs.collect{ |p| p.id })
       end
