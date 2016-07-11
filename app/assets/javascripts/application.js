@@ -32,6 +32,17 @@ jQuery(document).ready(function() {
     html: true
   });
 
+  $(".ajax-update-select").on("change", function(event){
+    $.ajax({
+      url: $(event.target).data("url"),
+      data: {
+          object_id: $(event.target).val(),
+          target: $(event.target).data("target")
+      },
+      dataType: "script"
+    });
+  });
+
   set_masks(null);
 
   jQuery("#show_password").on("click", function(event) {
