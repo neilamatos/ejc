@@ -1,4 +1,4 @@
-jQuery(document).ready(function() {
+jQuery(document).on("ready page:load turbolinks:load", function() {
     $('#side-menu').metisMenu();
 
     var url = window.location;

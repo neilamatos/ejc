@@ -17,7 +17,7 @@
 //= require bootstrap
 //= require meiomask
 //= require_tree .
-jQuery(document).ready(function() {
+jQuery(document).on("ready page:load turbolinks:load", function() {
   // Showing tooltips
   $('body').tooltip({
       selector: 'input,select,textarea'
@@ -79,7 +79,7 @@ jQuery(document).ready(function() {
     if(event.which == 13)  // the enter key code
     {
       $(event.target).closest("form").submit();
-      return false;  
+      return false;
     }
   });
 });
