@@ -5,10 +5,10 @@ Versão 2.0
 
 ## Dependências
 
-* Ruby >= 2.2.2
+* Ruby 2.3.1
 * PostgreSQL >= 9.3
-* Rails v5.0.0rc2
-* Devise v4.1.1
+* Rails v5.0.0.1
+* Devise v4.2.0
 * CanCanCan v1.15.0
 * Bootstrap 3 com bootstrap-sass v3.3.6
 * Font-Awesome com font-awesome-sass v4.6.2
@@ -25,7 +25,7 @@ Versão 2.0
 ## Como instalar
 
 1. Clone o repositório
-  
+
   ```
   git clone git@gitlab.ifce.edu.br:dgti/app_template_rails5
   ```
@@ -34,7 +34,7 @@ Versão 2.0
   ```
   git checkout-index -a -f --prefix=/destination/path/
   ```
-3. Instalar rvm seguindo este tutorial: 
+3. Instalar rvm seguindo este tutorial:
 
   ```
   https://rvm.io/rvm/install
