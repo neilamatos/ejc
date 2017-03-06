@@ -1,17 +1,17 @@
 ## Aplicação Base para criação de Sistemas baseados em Rails 5 + Bootstrap.
 
-Versão 2.0
+Versão 2.2
 
 
 ## Dependências
 
-* Ruby 2.3.1
+* Ruby 2.3.3
 * PostgreSQL >= 9.3
-* Rails v5.0.0.1
+* Rails v5.0.2
 * Devise v4.2.0
-* CanCanCan v1.15.0
-* Bootstrap 3 com bootstrap-sass v3.3.6
-* Font-Awesome com font-awesome-sass v4.6.2
+* CanCanCan v1.16.0
+* Bootstrap 3 com bootstrap-sass v3.3.7
+* Font-Awesome com font-awesome-sass v4.7.0
 * SB Admin v2.0 (Tema Bootstrap)
 
 ## Funcionalidades
@@ -39,10 +39,10 @@ Versão 2.0
   ```
   https://rvm.io/rvm/install
   ```
-4. Instalar ruby 2.3.1
+4. Instalar ruby 2.3.3
 
   ```
-  rvm install 2.3.1
+  rvm install 2.3.3
   ```
 5. Instalar as dependências
 
