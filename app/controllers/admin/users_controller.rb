@@ -22,7 +22,7 @@ class Admin::UsersController < ApplicationController
 
       @q = User.order("nome ASC").search(params[:q])
     end
-    
+
     @users = @q.result.page(params[:page])
     @total_registros = @q.result.count
     @roles = Role.order("nome ASC").collect{ |r| [r.nome, r.id]}
@@ -46,8 +46,6 @@ class Admin::UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    unauthorized_local_access(current_user)
-
     if unauthorized_access(!current_user.nil? && (current_user.id == @user.id || can?(:edit, "User".constantize)))
       return
     end
@@ -83,7 +81,7 @@ class Admin::UsersController < ApplicationController
         if !@user.errors.blank? && !@user.errors[:username].blank?
           @user.errors[:email] = @user.errors[:username]
         end
-        
+
         if current_user.local_access?
           @uos = {current_user.uo.nome => current_user.uo.id}
         else
@@ -101,7 +99,7 @@ class Admin::UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
-  def update    
+  def update
     if (params[:user][:password].blank?)
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)

@@ -1,0 +1,41 @@
+<nav class="navbar-default navbar-static-side" role="navigation" style="height: 100vh; background-color: #293846;">
+  <div class="sidebar-collapse">
+    <ul id="side-menu" class="nav metismenu" style="">
+      <li class="nav-header">
+        <div class="dropdown profile-element">
+          <span>
+            <%= image_tag "default_profile.jpg", alt: "image", class: "img-circle", style: "width: 48px; height: 48px;" %>
+          </span>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+            <span class="clear">
+              <span class="block m-t-xs">
+                <strong class="font-bold"><%= current_user.nome %></strong>
+              </span>
+              <span class="text-muted text-xs block">
+                <%= current_user.role.nome %>
+                <b class="caret"></b>
+              </span>
+            </span>
+          </a>
+          <ul class="dropdown-menu animated fadeInRight m-t-xs">
+            <li>
+              <%= link_to edit_admin_user_path(current_user) do %>
+                <%= fa(:user) %>
+                Perfil
+              <% end %>
+            </li>
+            <li class="divider"></li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete do %>
+                <%= fa(:'sign-out') %>
+                Sair
+              <% end %>
+            </li>
+          </ul>
+        </div>
+        <div class="logo-element"> IN+ </div>
+      </li>
+      <%= render "layouts/menu_items" %>
+    </ul>
+  </div>
+</nav>

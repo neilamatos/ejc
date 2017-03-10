@@ -4,32 +4,44 @@
 
 <%= render partial: "search_form" %>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Sigla</th>
-      <th>Cnpj</th>
-      <th>Cidade</th>
-      <th>Ações</th>
-    </tr>
-  </thead>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="ibox float-e-margins">
+      <div class="ibox-title">
+        <h5>Custom responsive table </h5>
+      </div>
+      <div class="ibox-content">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Sigla</th>
+                <th>Cnpj</th>
+                <th>Cidade</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @uos.each do |uo| %>
+                <tr>
+                  <td><%= uo.nome %></td>
+                  <td><%= uo.sigla %></td>
+                  <td><%= uo.cnpj %></td>
+                  <td><%= uo.cidade %></td>
+                  <td>
+                    <%= link_to 'Exibir', admin_uo_path(uo), class: 'btn btn-xs btn-default' %>
+                    <%= link_to 'Editar', edit_admin_uo_path(uo), class: 'btn btn-xs btn-default' %>
+                    <%= link_to 'Deletar', admin_uo_path(uo), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-xs btn-danger' %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
 
-  <tbody>
-    <% @uos.each do |uo| %>
-      <tr>
-        <td><%= uo.nome %></td>
-        <td><%= uo.sigla %></td>
-        <td><%= uo.cnpj %></td>
-        <td><%= uo.cidade %></td>        
-        <td>
-          <%= link_to 'Exibir', admin_uo_path(uo), class: 'btn btn-xs btn-default' %>
-          <%= link_to 'Editar', edit_admin_uo_path(uo), class: 'btn btn-xs btn-default' %>
-          <%= link_to 'Deletar', admin_uo_path(uo), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= paginate @uos %>
+          <%= paginate @uos %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

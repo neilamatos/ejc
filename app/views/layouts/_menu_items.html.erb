@@ -1,0 +1,42 @@
+<li class="<%= 'active' if params[:controller] == 'home' %>">
+  <%= link_to home_path do %>
+    <i class="fa fa-dashboard fa-fw"></i>
+    <span class="nav-label">Início</span>
+  <% end %>
+</li>
+<%
+ acessos_selected = params[:controller] == 'admin/uos' || params[:controller] == 'admin/users' || params[:controller] == 'admin/roles'
+%>
+<li class="<%= 'active' if acessos_selected %>">
+  <%= link_to "#" do %>
+    <i class="fa fa-users fa-fw"></i>
+    <span class="nav-label">Acessos</span>
+    <span class="fa arrow"></span>
+  <% end %>
+  <ul class="nav nav-second-level">
+    <% if can?(:index, "Uo".constantize) %>
+      <li class="<%= 'active' if params[:controller] == 'admin/uos' %>">
+        <%= link_to admin_uos_path do %>
+          <i class="fa fa-graduation-cap fa-fw"></i>
+          Uos
+        <% end %>
+      </li>
+    <% end %>
+    <% if can?(:index, "User".constantize) %>
+      <li class="<%= 'active' if params[:controller] == 'admin/users' %>">
+        <%= link_to admin_users_path do %>
+          <i class="fa fa-user fa-fw"></i>
+          Usuários
+        <% end %>
+      </li>
+    <% end %>
+    <% if can?(:index, "Role".constantize) %>
+      <li class="<%= 'active' if params[:controller] == 'admin/roles' %>">
+        <%= link_to admin_roles_path do %>
+          <i class="fa fa-cubes fa-fw"></i>
+          Papéis
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</li>

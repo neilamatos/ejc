@@ -17,7 +17,7 @@
 //= require bootstrap
 //= require meiomask
 //= require_tree .
-jQuery(document).on("ready page:load turbolinks:load", function() {
+jQuery(document).on("page:load turbolinks:load", function() {
   // Showing tooltips
   $('body').tooltip({
       selector: 'input,select,textarea'
