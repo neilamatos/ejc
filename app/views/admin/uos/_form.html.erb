@@ -48,14 +48,14 @@
     <div class="form-group col-md-5">
       <%= f.label "Estado" %>
       <%= f.select :estado_id, @estados, { :include_blank => "Selecione um estado" }, { :data => { :url => update_cidades_admin_uos_path, target: "#uo_cidade_id" }, :title => tooltip_error_title(@uo, :estado_id), class: "form-control ajax-update-select" } %>
-    </div>    
+    </div>
   </div>
   <div class="row">
     <div class="form-group col-md-5">
       <%= f.label "Cidade" %>
       <%= f.select :cidade_id, @cidades, {:prompt => "É preciso selecionar um estado primeiro"}, :title => tooltip_error_title(@uo, :cidade_id), class: "form-control" %>
     </div>
-  </div>  
+  </div>
   <div class="row">
     <div class="form-group col-md-5">
       <%= f.label :cep %>

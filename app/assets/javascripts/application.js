@@ -16,8 +16,15 @@
 //= require turbolinks
 //= require bootstrap
 //= require meiomask
+//= require nprogress
 //= require_tree .
 jQuery(document).on("page:load turbolinks:load", function() {
+  NProgress.configure({
+    showSpinner: false,
+    ease: 'ease',
+    speed: 500
+  });
+
   // Showing tooltips
   $('body').tooltip({
       selector: 'input,select,textarea'

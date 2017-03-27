@@ -44,6 +44,8 @@ gem 'spring',        group: :development
 
 # Internationalization
 gem 'rails-i18n'
+# Progress bar for all requests
+gem 'nprogress-rails'
 
 # Use debugger
 gem 'byebug', group: [:development, :test]
