@@ -3,10 +3,10 @@ class User < ActiveRecord::Base
   belongs_to :uo
 
   attr_accessor :password_string
-  
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+  devise :ldap_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   validates :nome, presence: true, length: { in: 3..255 }
   validates :telefone, phone: { mobile: false }
@@ -36,5 +36,11 @@ class User < ActiveRecord::Base
 
   def to_s
     self.nome
+  end
+
+  def ldap_before_save
+    self.nome = Devise::LDAP::Adapter.get_ldap_param(self.email, "description").first
+    debugger
+    self.role_id = 1
   end
 end

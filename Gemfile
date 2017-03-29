@@ -46,6 +46,7 @@ gem 'spring',        group: :development
 gem 'rails-i18n'
 # Progress bar for all requests
 gem 'nprogress-rails'
+gem 'devise_ldap_authenticatable'
 
 # Use debugger
 gem 'byebug', group: [:development, :test]
