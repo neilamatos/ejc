@@ -40,7 +40,10 @@ class User < ActiveRecord::Base
 
   def ldap_before_save
     self.nome = Devise::LDAP::Adapter.get_ldap_param(self.email, "description").first
-    debugger
+    role_type = Devise::LDAP::Adapter.get_ldap_param(self.email, "extensionAttribute2").first.force_encoding("UTF-8")
+    if role_type == "Técnico-Administrativo"
+      puts "Criando Servidor"
+    end
     self.role_id = 1
   end
 end
