@@ -8,8 +8,15 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :ldap_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
+  validates :username, presence: true
+  validates_uniqueness_of :username, case_sensitive: false
   validates :nome, presence: true, length: { in: 3..255 }
   validates :telefone, phone: { mobile: false }
+
+  # Removing email uniqueness validation
+  def email_changed?
+    false
+  end
 
   def admin?
     return false if self.nome.blank?
@@ -39,8 +46,8 @@ class User < ActiveRecord::Base
   end
 
   def ldap_before_save
-    self.nome = Devise::LDAP::Adapter.get_ldap_param(self.email, "description").first
-    role_type = Devise::LDAP::Adapter.get_ldap_param(self.email, "extensionAttribute2").first.force_encoding("UTF-8")
+    self.nome = Devise::LDAP::Adapter.get_ldap_param(self.username, "description").first
+    role_type = Devise::LDAP::Adapter.get_ldap_param(self.username, "extensionAttribute2").first.force_encoding("UTF-8")
     if role_type == "Técnico-Administrativo"
       puts "Criando Servidor"
     end

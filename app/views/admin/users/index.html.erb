@@ -13,17 +13,18 @@
             <thead>
               <tr>
                 <th>Nome</th>
+                <th>Matrícula</th>
                 <th>Email</th>
                 <th>Papel</th>
                 <th>Uo</th>
                 <th>Ações</th>
               </tr>
             </thead>
-
             <tbody>
               <% @users.each do |user| %>
                 <tr>
                   <td><%=user.nome%></td>
+                  <td><%=user.username%></td>
                   <td><%=user.email%></td>
                   <td><%=user.role.nome%></td>
                   <td><%= user.uo.blank? ? "-" : user.uo.nome%></td>

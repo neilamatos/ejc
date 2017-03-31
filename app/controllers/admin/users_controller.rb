@@ -119,6 +119,11 @@ class Admin::UsersController < ApplicationController
     respond_to do |format|
       @user.password_string = @user.password
       if verify_super_admin(@user) && @user.update(params[:user])
+        if !params[:user][:password].blank?
+          debugger
+          Devise::LDAP::Adapter.update_password(@user.username, params[:user][:password])
+        end
+
         if current_user.id == @user.id
           flash[:notice] = 'Usuário foi atualizado com sucesso. Para ter acesso ao sistema, é preciso se logar novamente com seus dados de acesso atualizados.'
           sign_out_and_redirect(@user)

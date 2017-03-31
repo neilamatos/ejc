@@ -29,7 +29,7 @@ authorizations: &AUTHORIZATIONS
 development:
   host: adproducao.ifce.edu.br
   port: 389
-  attribute: mail
+  attribute: sAMAccountName
   base: ou=IFCE,dc=adproducao,dc=ifce,dc=edu,dc=br
   admin_user: CN=Administrator,CN=Users,DC=adproducao,DC=ifce,DC=edu,DC=br
   admin_password: 545a0H34mm
@@ -39,7 +39,7 @@ development:
 test:
   host: localhost
   port: 3389
-  attribute: cn
+  attribute: sAMAccountName
   base: ou=people,dc=test,dc=com
   admin_user: cn=admin,dc=test,dc=com
   admin_password: admin_password
@@ -49,7 +49,7 @@ test:
 production:
   host: localhost
   port: 636
-  attribute: cn
+  attribute: sAMAccountName
   base: ou=people,dc=test,dc=com
   admin_user: cn=admin,dc=test,dc=com
   admin_password: admin_password

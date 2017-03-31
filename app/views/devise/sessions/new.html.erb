@@ -5,13 +5,13 @@
     <div class="col-md-6">
       <%= image_tag "logo_ifce_ceara.png", style: "width: 300px; height: 125px;" %>
       <h2 class="font-bold">Bem vindo ao Template de Aplicação em Rails 5</h2>
-      <p> Efetue login utilizando seu email e senha. Esses dados são os mesmos usados no SUAP. </p>
+      <p> Efetue login utilizando sua matrícula SIAPE e senha. Esses dados são os mesmos usados no SUAP. </p>
     </div>
     <div class="col-md-6">
       <div class="ibox-content" style="min-height: 280px;">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form", class: "m-t" }) do |f| %>
           <div class="form-group">
-            <%= f.text_field :email, :autofocus => true, :placeholder => "Login", :title => tooltip_error_title(resource, :email), class: "form-control" %>
+            <%= f.text_field :username, :autofocus => true, :placeholder => "SIAPE", :title => tooltip_error_title(resource, :username), class: "form-control" %>
           </div>
           <div class="form-group">
             <%= f.password_field :password, :placeholder => "Senha", :title => tooltip_error_title(resource, :password), class: "form-control" %>
