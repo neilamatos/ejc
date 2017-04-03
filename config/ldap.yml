@@ -1,0 +1,57 @@
+## Authorizations
+# Uncomment out the merging for each environment that you'd like to include.
+# You can also just copy and paste the tree (do not include the "authorizations") to each
+# environment if you need something different per enviornment.
+authorizations: &AUTHORIZATIONS
+  allow_unauthenticated_bind: false
+  group_base: ou=groups,dc=test,dc=com
+  ## Requires config.ldap_check_group_membership in devise.rb be true
+  # Can have multiple values, must match all to be authorized
+  required_groups:
+    # If only a group name is given, membership will be checked against "uniqueMember"
+    - cn=admins,ou=groups,dc=test,dc=com
+    - cn=users,ou=groups,dc=test,dc=com
+    # If an array is given, the first element will be the attribute to check against, the second the group name
+    - ["moreMembers", "cn=users,ou=groups,dc=test,dc=com"]
+  ## Requires config.ldap_check_attributes in devise.rb to be true
+  ## Can have multiple attributes and values, must match all to be authorized
+  require_attribute:
+    objectClass: inetOrgPerson
+    authorizationRole: postsAdmin
+
+# $conf['plugin']['authad']['account_suffix'] = '@adproducao.ifce.edu.br'; // sufixo da conta (usuario@sufixo)
+# $conf['plugin']['authad']['base_dn'] = 'OU=DGTI,OU=IFCE,DC=adproducao,DC=ifce,DC=edu,DC=br'; // caminho em que sera feita a busca
+# $conf['plugin']['authad']['domain_controllers'] = 'adproducao.ifce.edu.br'; // AD host
+# $conf['plugin']['authad']['admin_username'] = 'dokuwiki'; // admin user
+# $conf['plugin']['authad']['admin_password'] = 'D04MAQM8l6bXC5o';
+## Environment
+
+development:
+  host: adproducao.ifce.edu.br
+  port: 389
+  attribute: sAMAccountName
+  base: ou=IFCE,dc=adproducao,dc=ifce,dc=edu,dc=br
+  admin_user: CN=Administrator,CN=Users,DC=adproducao,DC=ifce,DC=edu,DC=br
+  admin_password: 545a0H34mm
+  ssl: false
+  # <<: *AUTHORIZATIONS
+
+test:
+  host: localhost
+  port: 3389
+  attribute: sAMAccountName
+  base: ou=people,dc=test,dc=com
+  admin_user: cn=admin,dc=test,dc=com
+  admin_password: admin_password
+  ssl: simple_tls
+  # <<: *AUTHORIZATIONS
+
+production:
+  host: localhost
+  port: 636
+  attribute: sAMAccountName
+  base: ou=people,dc=test,dc=com
+  admin_user: cn=admin,dc=test,dc=com
+  admin_password: admin_password
+  ssl: start_tls
+  # <<: *AUTHORIZATIONS

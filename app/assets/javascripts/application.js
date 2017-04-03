@@ -29,15 +29,11 @@ jQuery(document).on("page:load turbolinks:load", function() {
   $('body').tooltip({
       selector: 'input,select,textarea'
   });
-
   $('body').tooltip({
       selector: 'i'
   });
 
-  $(".element-tooltip").tooltip({
-    placement: 'bottom',
-    html: true
-  });
+  $('.tool-tip').tooltip({title: $(this).attr("title")});
 
   $(".ajax-update-select").on("change", function(event){
     $.ajax({
