@@ -16,13 +16,6 @@
           <div class="form-group">
             <%= f.password_field :password, :placeholder => "Senha", :title => tooltip_error_title(resource, :password), class: "form-control" %>
           </div>
-          <% if devise_mapping.rememberable? %>
-            <div class="checkbox">
-              <label for="remember_me_chk">
-                <%= f.check_box :remember_me, :id => 'remember_me_chk' %> Manter conectado
-              </label>
-            </div>
-          <% end %>
 
           <%= f.submit "Login", :class=> 'btn btn-primary' %>
           <%= render "devise/shared/links" %>

@@ -30,7 +30,7 @@ if super_admin.permissions.blank?
 end
 
 if !User.find_by_email(default_user_email)
-  user = User.new(:nome => "Admin", :email => default_user_email, :password => default_user_password, :password_confirmation => default_user_password)
+  user = User.new(nome: "Admin", email: default_user_email, password: default_user_password, password_confirmation: default_user_password)
   role = Role.find_by_nome('SuperAdmin')
   user.role = role
   user.save!
