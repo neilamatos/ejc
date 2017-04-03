@@ -5,14 +5,14 @@ Versão 2.2
 
 ## Dependências
 
-* Ruby 2.3.3
+* Ruby 2.4.1
 * PostgreSQL >= 9.3
-* Rails v5.0.2
-* Devise v4.2.0
+* Rails v5.1.0.rc1
+* Devise v4.2.1
 * CanCanCan v1.16.0
 * Bootstrap 3 com bootstrap-sass v3.3.7
 * Font-Awesome com font-awesome-sass v4.7.0
-* SB Admin v2.0 (Tema Bootstrap)
+* Inspinia 2.7 (Tema Bootstrap)
 
 ## Funcionalidades
 
@@ -21,6 +21,7 @@ Versão 2.2
 * CRUD de Usuários no Backend
 * CRUD de Papéis no Backend
 * Tela de início com possibilidade de ser extendida para Dashboard
+* Suporte a autenticação híbrida com suporte a senhas armazenadas no banco local ou no servidor do ActiveDirectory(LDAP)
 
 ## Como instalar
 
@@ -39,10 +40,11 @@ Versão 2.2
   ```
   https://rvm.io/rvm/install
   ```
-4. Instalar ruby 2.3.3
+4. Instalar ruby 2.4.1
 
   ```
-  rvm install 2.3.3
+  rvm install 2.4.1
+  gem install 'bundler'
   ```
 5. Instalar as dependências
 
