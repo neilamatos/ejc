@@ -13,10 +13,11 @@
             <thead>
               <tr>
                 <th>Nome</th>
-                <th>Matrícula</th>
+                <th>Matrícula/Usuário</th>
                 <th>Email</th>
                 <th>Papel</th>
                 <th>Uo</th>
+                <th>Tipo de Autenticação</th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -28,6 +29,7 @@
                   <td><%=user.email%></td>
                   <td><%=user.role.nome%></td>
                   <td><%= user.uo.blank? ? "-" : user.uo.nome%></td>
+                  <td><%= ad_user_label(user) %></td>
                   <td>
                     <%= link_to 'Exibir', admin_user_path(user), class: 'btn btn-xs btn-default' %>
                     <% if user.can_edit?(current_user) %>

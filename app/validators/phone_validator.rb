@@ -19,7 +19,7 @@ class PhoneValidator < ActiveModel::EachValidator
   # first digit must start with 7, 8 or 9
   # might start with 5 as well if dialing code is 11
   #
-  MOBILE_REGEXP = /\A(11(5|[7-9])\d{7,8}|1[2-9][7-9]\d{7,8}|[2-9]\d[7-9]\d{7})\z/
+  MOBILE_REGEXP = /\A(11(5|[7-9])\d{7,8}|1[2-9][7-9]\d{7,8}|[2-9]\d[7-9]\d{7,8})\z/
 
   def validate_each(record, attr_name, value)
     message = options[:mobile] ?

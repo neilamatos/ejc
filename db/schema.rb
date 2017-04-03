@@ -10,90 +10,91 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170331131944) do
+ActiveRecord::Schema.define(version: 20170403173204) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cidades", force: :cascade do |t|
-    t.string   "nome"
-    t.integer  "estado_id"
+  create_table "cidades", id: :serial, force: :cascade do |t|
+    t.string "nome"
+    t.integer "estado_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["estado_id"], name: "index_cidades_on_estado_id", using: :btree
+    t.index ["estado_id"], name: "index_cidades_on_estado_id"
   end
 
-  create_table "estados", force: :cascade do |t|
-    t.string   "nome"
-    t.string   "uf"
+  create_table "estados", id: :serial, force: :cascade do |t|
+    t.string "nome"
+    t.string "uf"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "permissions", force: :cascade do |t|
-    t.string   "nome"
-    t.string   "subject_class"
-    t.string   "action"
-    t.string   "controller_namespace"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+  create_table "permissions", id: :serial, force: :cascade do |t|
+    t.string "nome"
+    t.string "subject_class"
+    t.string "action"
+    t.string "controller_namespace"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "permissions_roles", force: :cascade do |t|
+  create_table "permissions_roles", id: :serial, force: :cascade do |t|
     t.integer "permission_id"
     t.integer "role_id"
-    t.index ["permission_id"], name: "index_permissions_roles_on_permission_id", using: :btree
-    t.index ["role_id"], name: "index_permissions_roles_on_role_id", using: :btree
+    t.index ["permission_id"], name: "index_permissions_roles_on_permission_id"
+    t.index ["role_id"], name: "index_permissions_roles_on_role_id"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string   "nome"
-    t.boolean  "uo_dependent", default: true
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+  create_table "roles", id: :serial, force: :cascade do |t|
+    t.string "nome"
+    t.boolean "uo_dependent", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "uos", force: :cascade do |t|
-    t.string   "nome"
-    t.string   "sigla"
-    t.string   "cnpj"
-    t.string   "endereco"
-    t.string   "complemento"
-    t.string   "bairro"
-    t.integer  "estado_id"
-    t.integer  "cidade_id"
-    t.string   "cep"
-    t.string   "codigo_ug"
-    t.integer  "codigo"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["cidade_id"], name: "index_uos_on_cidade_id", using: :btree
-    t.index ["estado_id"], name: "index_uos_on_estado_id", using: :btree
+  create_table "uos", id: :serial, force: :cascade do |t|
+    t.string "nome"
+    t.string "sigla"
+    t.string "cnpj"
+    t.string "endereco"
+    t.string "complemento"
+    t.string "bairro"
+    t.integer "estado_id"
+    t.integer "cidade_id"
+    t.string "cep"
+    t.string "codigo_ug"
+    t.integer "codigo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cidade_id"], name: "index_uos_on_cidade_id"
+    t.index ["estado_id"], name: "index_uos_on_estado_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string   "nome"
-    t.string   "telefone"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", id: :serial, force: :cascade do |t|
+    t.string "nome"
+    t.string "telefone"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "role_id"
-    t.integer  "uo_id"
-    t.string   "username"
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-    t.index ["role_id"], name: "index_users_on_role_id", using: :btree
-    t.index ["uo_id"], name: "index_users_on_uo_id", using: :btree
-    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
+    t.integer "role_id"
+    t.integer "uo_id"
+    t.string "username"
+    t.boolean "ad_user", default: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
+    t.index ["uo_id"], name: "index_users_on_uo_id"
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
   add_foreign_key "cidades", "estados"

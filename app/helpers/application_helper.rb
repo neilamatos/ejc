@@ -75,7 +75,7 @@ module ApplicationHelper
   end
 
   def tooltip_error_title(resource, attribute)
-    resource.errors.include?(attribute) ? resource.errors.get(attribute).join(', ').html_safe : ''
+    resource.errors.include?(attribute) ? resource.errors[attribute].join(', ').html_safe : ''
   end
 
   def login_label(user)

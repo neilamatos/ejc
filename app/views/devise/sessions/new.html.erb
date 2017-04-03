@@ -11,7 +11,7 @@
       <div class="ibox-content" style="min-height: 280px;">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form", class: "m-t" }) do |f| %>
           <div class="form-group">
-            <%= f.text_field :username, :autofocus => true, :placeholder => "SIAPE", :title => tooltip_error_title(resource, :username), class: "form-control" %>
+            <%= f.text_field :username, :autofocus => true, :placeholder => "Nome de Usuário/SIAPE", :title => tooltip_error_title(resource, :username), class: "form-control" %>
           </div>
           <div class="form-group">
             <%= f.password_field :password, :placeholder => "Senha", :title => tooltip_error_title(resource, :password), class: "form-control" %>

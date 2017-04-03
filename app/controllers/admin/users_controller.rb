@@ -73,15 +73,10 @@ class Admin::UsersController < ApplicationController
 
     respond_to do |format|
       @user.password_string = @user.password
-
       if verify_super_admin(@user) && @user.save
-        format.html { redirect_to admin_user_path(@user), notice: 'Usuário foi criado com sucesso.' }
+        format.html { redirect_to admin_users_path, notice: 'Usuário foi criado com sucesso.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
-        if !@user.errors.blank? && !@user.errors[:username].blank?
-          @user.errors[:email] = @user.errors[:username]
-        end
-
         if current_user.local_access?
           @uos = {current_user.uo.nome => current_user.uo.id}
         else
@@ -103,6 +98,11 @@ class Admin::UsersController < ApplicationController
     if (params[:user][:password].blank?)
       params[:user].delete(:password)
       params[:user].delete(:password_confirmation)
+
+    end
+
+    if !current_user.super_admin?
+      params[:user].delete(:username)
     end
 
     if unauthorized_access(!current_user.nil? && (current_user.id == @user.id || can?(:edit, "User".constantize)))
@@ -113,7 +113,7 @@ class Admin::UsersController < ApplicationController
       return unauthorized_access(false)
     end
 
-    user_redirect = admin_user_path(@user)
+    user_redirect = admin_users_path
     redirect_options = { notice: 'Usuário foi atualizado com sucesso.' }
 
     respond_to do |format|
@@ -167,14 +167,6 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # def confirm
-  #   if (!@user.confirmed?)
-  #     @user.confirm!
-  #   end
-
-  #   redirect_to admin_users_url, notice: "Usuário confirmado com sucesso!"
-  # end
-
   private
     #Retorna true quando puder criar o super admin ou falso caso contrario
     def verify_super_admin(user)
@@ -198,6 +190,6 @@ class Admin::UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:nome, :email, :password, :telefone, :password_confirmation, :uo_id, :role_id)
+      params.require(:user).permit(:nome, :email, :username, :password, :telefone, :password_confirmation, :ad_user, :uo_id, :role_id)
     end
 end

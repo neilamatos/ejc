@@ -6,13 +6,13 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :ldap_authenticatable, :recoverable, :trackable, :validatable
-  # devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
+  devise :ldap_authenticatable, :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable
 
   validates :username, presence: true
   validates_uniqueness_of :username, case_sensitive: false
   validates :nome, presence: true, length: { in: 3..255 }
   validates :telefone, phone: { mobile: false }
+  validates :role_id, presence: true
 
   # Removing email uniqueness validation
   def email_changed?
