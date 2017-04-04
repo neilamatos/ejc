@@ -47,6 +47,7 @@ gem 'rails-i18n'
 # Progress bar for all requests
 gem 'nprogress-rails'
 gem 'devise_ldap_authenticatable'
+gem "simple_form"
 
 # Use debugger
 gem 'byebug', group: [:development, :test]

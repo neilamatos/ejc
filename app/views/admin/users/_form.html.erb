@@ -1,85 +1,38 @@
-<%= form_for([:admin, @user], html: { role: "form", autocomplete: "off" }) do |f| %>
-  <%= error_message @user %>
-  <%= display_nested_errors @user %>
-
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :nome %>
-      <%= f.text_field :nome, class: 'form-control', title: tooltip_error_title(@user, :nome) %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :username, "Matrícula/Usuário" %>
-      <%= f.text_field :username, class: 'form-control', title: tooltip_error_title(@user, :username), disabled: !current_user.super_admin? %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :email %>
-      <%= f.text_field :email, class: 'form-control', title: tooltip_error_title(@user, :email) %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :telefone %>
-      <%= f.text_field :telefone, class: 'form-control', title: tooltip_error_title(@user, :telefone), :"data-mask" => '(99) 9999-99999' %>
-    </div>
-  </div>
-  <% if !@user.new_record? %>
-    <div class="row">
-      <div class="form-group col-md-5">
-
+<div class="row">
+  <div class="col-sm-8">
+    <%= simple_form_for([:admin, @user], wrapper: :vertical_form, html: { class: "form-vertical", role: "form", autocomplete: "off" }) do |f| %>
+      <%= f.input :nome %>
+      <%= f.input :username, disabled: !current_user.super_admin? %>
+      <%= f.input :email %>
+      <%= f.input :telefone, :"data-mask" => '(99) 9999-99999' %>
+      <% display = "" %>
+      <% if !@user.new_record? %>
+        <div class="row">
+          <div class="form-group col-md-5">
+            <a id="show_password" href="#">Alterar senha</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-5">
+            Caso queira alterar a senha do usuário no AD, clique <%= link_to "aqui", "http://suap.ifce.edu.br/comum/solicitar_trocar_senha/", target: "_blank" %>.
+          </div>
+        </div>
+        <% display="display:none;" %>
+      <% end %>
+      <div id="password" style="<%=display%>">
+        <%= f.input :password, label: "Senha" %>
       </div>
-    </div>
-  <% end %>
-  <% display="" %>
-  <% if !@user.new_record? %>
-    <div class="row">
-      <div class="form-group col-md-5">
-        <a id="show_password" href="#">Alterar senha</a>
+      <div id="password_confirmation" style="<%=display%>">
+        <%= f.input :password_confirmation, label: "Confirmação de senha" %>
       </div>
-    </div>
-    <div class="row">
-      <div class="form-group col-md-5">
-        Caso queira alterar a senha do usuário no AD, clique <%= link_to "aqui", "http://suap.ifce.edu.br/comum/solicitar_trocar_senha/", target: "_blank" %>.
-      </div>
-    </div>
-    <% display="display:none;" %>
-  <% end %>
-  <div id="password" class="row" style="<%=display%>">
-    <div class="form-group col-md-5">
-      <%= f.label :password, "Senha" %>
-      <%= f.password_field :password, class: 'form-control', title: tooltip_error_title(@user, :password) %>
-    </div>
-  </div>
-  <div id="password_confirmation" class="row" style="<%=display%>">
-    <div class="form-group col-md-5">
-      <%= f.label :password_confirmation, "Confirmação de Senha" %>
-      <%= f.password_field :password_confirmation, class: 'form-control', title: tooltip_error_title(@user, :password_confirmation) %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :ad_user, "Tipo de Autenticação", class: 'control-label' %>
-      <%= f.select :ad_user, [["Apenas AD",true], ["Híbrido",false]], { include_blank: "Selecione um Tipo de Autenticação" }, title: tooltip_error_title(@user, :ad_user), class: "form-control" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :role_id %>
-      <%= f.select :role_id, @roles, { include_blank: "Selecione uma Role" }, title: tooltip_error_title(@user, :role_id), class: "form-control" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :uo_id, class: 'control-label' %>
-      <%= f.select :uo_id, @uos, { include_blank: "Selecione uma Uo" }, title: tooltip_error_title(@user, :uo_id), class: "form-control" %>
-    </div>
-  </div>
+      <%= f.input :ad_user, label: "Tipo de autenticação", as: :select, collection: [["Apenas AD",true], ["Híbrido",false]], prompt: "Selecione um Tipo de Autenticação", input_html: { class: "chosen-select" } %>
+      <%= f.input :role_id, label: "Papel", as: :select, collection: @roles, prompt: "Selecione uma Role", input_html: { class: "chosen-select" } %>
+      <%= f.input :uo_id, as: :select, collection: @uos, prompt: "Selecione uma Uo", input_html: { class: "chosen-select" } %>
 
-  <div class="form-actions">
-    <%= f.submit "Salvar", :class => 'btn btn-primary' %>
-    <%= link_to "Cancelar", admin_users_path, :class => 'btn btn-default' %>
+      <div class="form-actions">
+        <%= f.submit "Salvar", :class => 'btn btn-primary' %>
+        <%= link_to "Cancelar", admin_users_path, :class => 'btn btn-default' %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

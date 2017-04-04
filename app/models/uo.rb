@@ -4,9 +4,7 @@ class Uo < ActiveRecord::Base
 
   validates :nome, presence: true
   validates :sigla, presence: true
-  validates :codigo_ug, presence: true
-  validates :cnpj, presence: true
-  
+
   def to_s
     self.nome
   end

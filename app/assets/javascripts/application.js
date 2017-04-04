@@ -17,12 +17,21 @@
 //= require bootstrap
 //= require meiomask
 //= require nprogress
+//= require nprogress-ajax
 //= require_tree .
 jQuery(document).on("page:load turbolinks:load", function() {
   NProgress.configure({
     showSpinner: false,
     ease: 'ease',
     speed: 500
+  });
+
+  $(".chosen-select").chosen({
+    no_results_text: ""
+  });
+
+  $(".chosen-select-no-search").chosen({
+    disable_search_threshold: 1000
   });
 
   // Showing tooltips

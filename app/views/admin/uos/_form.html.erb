@@ -1,69 +1,20 @@
-<%= form_for([:admin, @uo], html: { role: "form" }) do |f| %>
-  <%= error_message @uo %>
-  <%= display_nested_errors @uo %>
-
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :nome %>
-      <%= f.text_field :nome, class: 'form-control', title: tooltip_error_title(@uo, :nome) %>
-    </div>
+<div class="row">
+  <div class="col-sm-8">
+    <%= simple_form_for([:admin, @uo], wrapper: :vertical_form, html: { class: "form-vertical", role: "form" }) do |f| %>
+      <%= f.input :nome %>
+      <%= f.input :sigla %>
+      <%= f.input :cnpj, class: 'form-control', :"data-mask" => "99.999.999/9999-99" %>
+      <%= f.input :codigo_ug, class: 'form-control' %>
+      <%= f.input :endereco, class: 'form-control' %>
+      <%= f.input :complemento, class: 'form-control' %>
+      <%= f.input :bairro, class: 'form-control' %>
+      <%= f.input :estado_id, as: :select, collection: @estados, prompt: "Selecione um estado" , input_html: { :data => { :url => update_cidades_admin_uos_path, target: "#uo_cidade_id" }, class: "chosen-select ajax-update-select" } %>
+      <%= f.input :cidade_id, as: :select, collection: @cidades, prompt: "É preciso selecionar um estado primeiro", input_html: { class: "chosen-select" } %>
+      <%= f.input :cep, class: 'form-control' %>
+      <div class="form-actions">
+        <%= f.submit "Salvar", :class => 'btn btn-primary' %>
+        <%= link_to "Cancelar", admin_uos_path, :class => 'btn btn-default' %>
+      </div>
+    <% end %>
   </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :sigla %>
-      <%= f.text_field :sigla, class: 'form-control', title: tooltip_error_title(@uo, :sigla) %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :cnpj %>
-      <%= f.text_field :cnpj, class: 'form-control', :"data-mask" => "99.999.999/9999-99", title: tooltip_error_title(@uo, :cnpj) %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :codigo_ug, "Código da UG" %>
-      <%= f.text_field :codigo_ug, class: 'form-control', title: tooltip_error_title(@uo, :codigo_ug) %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :endereco, "Endereço" %>
-      <%= f.text_field :endereco, class: 'form-control', title: tooltip_error_title(@uo, :endereco) %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :complemento %>
-      <%= f.text_field :complemento, class: 'form-control', title: tooltip_error_title(@uo, :complemento) %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :bairro %>
-      <%= f.text_field :bairro, class: 'form-control', title: tooltip_error_title(@uo, :bairro) %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label "Estado" %>
-      <%= f.select :estado_id, @estados, { :include_blank => "Selecione um estado" }, { :data => { :url => update_cidades_admin_uos_path, target: "#uo_cidade_id" }, :title => tooltip_error_title(@uo, :estado_id), class: "form-control ajax-update-select" } %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label "Cidade" %>
-      <%= f.select :cidade_id, @cidades, {:prompt => "É preciso selecionar um estado primeiro"}, :title => tooltip_error_title(@uo, :cidade_id), class: "form-control" %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="form-group col-md-5">
-      <%= f.label :cep %>
-      <%= f.text_field :cep, class: 'form-control', title: tooltip_error_title(@uo, :cep) %>
-    </div>
-  </div>
-  <div class="form-actions">
-    <%= f.submit "Salvar", :class => 'btn btn-primary' %>
-    <%= link_to "Cancelar", admin_uos_path, :class => 'btn btn-default' %>
-  </div>
-<% end %>
+</div>

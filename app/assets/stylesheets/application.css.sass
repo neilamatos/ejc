@@ -4,9 +4,13 @@
 @import "animate"
 @import "style"
 @import "metisMenu.min"
+$nprogress-color: #1ab394
+@import "nprogress"
+@import "nprogress-bootstrap"
+@import "chosen"
 
 body
-  background-color: #f3f3f4 !important
+  background-color: #f3f3f4
 
 .custom-text-color
   color: #a8aaab
@@ -19,6 +23,12 @@ body
 .field_with_errors > input[type=radio],
 .field_with_errors > input[type=file]
   outline: 1px solid red
+
+.chosen-container
+  width: 100% !important
+
+.has-error .chosen-container-single .chosen-single
+  border: 1px solid red !important
 
 /* User sign in and sign forms. */
 .border-form-div
