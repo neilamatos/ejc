@@ -28,11 +28,12 @@ Versão 2.2
 1. Clone o repositório
 
   ```
-  git clone git@gitlab.ifce.edu.br:dgti/app_template_rails5
+  git clone git@gitlab.ifce.edu.br:dgti/rails5apptemplate.git
   ```
 2. Exporte o repositório para o destino desejado do seu novo projeto (Obs: Não esqueça do / no final do path)
 
   ```
+  cd rails5apptemplate
   git checkout-index -a -f --prefix=/destination/path/
   ```
 3. Instalar rvm seguindo este tutorial:

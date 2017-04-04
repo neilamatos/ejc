@@ -1,4 +1,4 @@
-class CreatePermissionsRoles < ActiveRecord::Migration
+class CreatePermissionsRoles < ActiveRecord::Migration[5.1]
   def change
     create_table :permissions_roles do |t|
       t.references :permission, index: true, foreign_key: true
