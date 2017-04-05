@@ -14,7 +14,7 @@
     <span class="fa arrow"></span>
   <% end %>
   <ul class="nav nav-second-level">
-    <% if can?(:index, "Uo".constantize) %>
+    <% if can?(:index, Uo) %>
       <li class="<%= 'active' if params[:controller] == 'admin/uos' %>">
         <%= link_to admin_uos_path do %>
           <i class="fa fa-graduation-cap fa-fw"></i>
@@ -22,7 +22,7 @@
         <% end %>
       </li>
     <% end %>
-    <% if can?(:index, "User".constantize) %>
+    <% if can?(:index, User) %>
       <li class="<%= 'active' if params[:controller] == 'admin/users' %>">
         <%= link_to admin_users_path do %>
           <i class="fa fa-user fa-fw"></i>
@@ -30,7 +30,7 @@
         <% end %>
       </li>
     <% end %>
-    <% if can?(:index, "Role".constantize) %>
+    <% if can?(:index, Role) %>
       <li class="<%= 'active' if params[:controller] == 'admin/roles' %>">
         <%= link_to admin_roles_path do %>
           <i class="fa fa-cubes fa-fw"></i>
