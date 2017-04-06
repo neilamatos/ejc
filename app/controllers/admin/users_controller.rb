@@ -120,7 +120,6 @@ class Admin::UsersController < ApplicationController
       @user.password_string = @user.password
       if verify_super_admin(@user) && @user.update(params[:user])
         if !params[:user][:password].blank?
-          debugger
           Devise::LDAP::Adapter.update_password(@user.username, params[:user][:password])
         end
 
