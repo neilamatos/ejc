@@ -7,11 +7,11 @@ Versão 2.2
 
 * Ruby 2.4.1
 * PostgreSQL >= 9.3
-* Rails v5.1.0.rc1
-* Devise v4.2.1
-* CanCanCan v1.16.0
+* Rails v5.1.1
+* Devise v4.3.0
+* CanCanCan v2.0.0
 * Bootstrap 3 com bootstrap-sass v3.3.7
-* Font-Awesome com font-awesome-sass v4.7.0
+* Font-Awesome com font-awesome-sass v4.7.0.2
 * Inspinia 2.7 (Tema Bootstrap)
 
 ## Funcionalidades
