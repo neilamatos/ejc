@@ -1,9 +1,17 @@
 <%= error_message resource %>
 
-<div class="border-form-div">
+<div class="border-form-div" style="max-width: 400px;">
+  <p style="color: red;">
+    Atenção: Caso você esteja usando a autenticação com os dados de matrícula e senha do SUAP, por gentileza, use o link abaixo para solicitar a troca da sua senha:
+  </p>
+  <p>
+    <%= link_to "Clique aqui para trocar a senha", "https://suap.ifce.edu.br/comum/solicitar_trocar_senha/", target: "_blank" %>
+  </p>
+
   <h2>Esqueceu a senha?</h2>
+  <p style="color: red;">Apenas para os usuários locais que não usam a senha do SUAP</p>
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-    <%= f.text_field :username, autofocus: true, placeholder: "Login", title: tooltip_error_title(resource, :username), class: 'form-control' %>
+    <%= f.text_field :username, autofocus: true, placeholder: "Email/Login", title: tooltip_error_title(resource, :username), class: 'form-control' %>
     <%= f.submit "Enviar instruções por email", class: 'btn btn-primary'  %>
   <% end %>
 

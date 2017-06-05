@@ -1,0 +1,13 @@
+<% big_modal ||= false %>
+<div class="modal fade" id='<%="#{modal_id}-modal"%>' tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog <%= big_modal ? 'big-modal' : '' %>">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close cancel-modal-button" data-modal='<%="#{modal_id}-modal"%>'>&times;</button>
+        <h4 class="modal-title" style="float: left;" id="modalLabel"><%= modal_title %></h4>
+      </div>
+      <div id='<%="#{modal_id}-form-container"%>'>
+      </div>
+    </div>
+  </div>
+</div>
