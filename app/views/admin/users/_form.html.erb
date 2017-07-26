@@ -4,7 +4,7 @@
       <%= f.input :nome %>
       <%= f.input :username, disabled: !current_user.super_admin? %>
       <%= f.input :email %>
-      <%= f.input :telefone, :"data-mask" => '(99) 9999-99999' %>
+      <%= f.input :telefone, input_html: { :"data-mask" => '(99) 9999-99999' } %>
       <% display = "" %>
       <% if !@user.new_record? %>
         <div class="row">
