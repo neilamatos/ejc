@@ -38,11 +38,11 @@ class Admin::UosController < ApplicationController
 
     respond_to do |format|
       if @uo.save
-        format.html { redirect_to admin_uo_path(@uo), notice: 'Uo foi criada com sucesso.' }
+        format.html { redirect_to admin_uos_path, notice: 'Uo foi criada com sucesso.' }
         format.json { render action: 'show', status: :created, location: @admin_uo }
       else
         @estados = Estado.order("nome ASC").all.collect {|o| [o.nome, o.id]}
-        @cidades = @uo.estado.blank? ? ["É preciso selecionar um estado primeiro", ""] : @uo.estado.cidades.collect {|c| [c.nome, c.id]}        
+        @cidades = @uo.estado.blank? ? ["É preciso selecionar um estado primeiro", ""] : @uo.estado.cidades.collect {|c| [c.nome, c.id]}
         format.html { render action: 'new' }
         format.json { render json: @admin_uo.errors, status: :unprocessable_entity }
       end
@@ -54,11 +54,11 @@ class Admin::UosController < ApplicationController
   def update
     respond_to do |format|
       if @uo.update(uo_params)
-        format.html { redirect_to admin_uo_path(@uo), notice: 'Uo foi atualizada com sucesso.' }
+        format.html { redirect_to admin_uos_path, notice: 'Uo foi atualizada com sucesso.' }
         format.json { head :no_content }
       else
         @estados = Estado.order("nome ASC").all.collect {|o| [o.nome, o.id]}
-        @cidades = @uo.estado.blank? ? ["É preciso selecionar um estado primeiro", ""] : @uo.estado.cidades.collect {|c| [c.nome, c.id]}                
+        @cidades = @uo.estado.blank? ? ["É preciso selecionar um estado primeiro", ""] : @uo.estado.cidades.collect {|c| [c.nome, c.id]}
         format.html { render action: 'edit' }
         format.json { render json: @uo.errors, status: :unprocessable_entity }
       end

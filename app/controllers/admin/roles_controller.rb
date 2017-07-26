@@ -43,7 +43,7 @@ class Admin::RolesController < ApplicationController
       if @role.save
         @role.set_permissions(params[:permissions]) if params[:permissions]
 
-        format.html { redirect_to admin_role_path(@role), notice: 'Papel foi criado com sucesso.' }
+        format.html { redirect_to admin_roles_path, notice: 'Papel foi criado com sucesso.' }
         format.json { render action: 'show', status: :created, location: @role }
       else
         permissions_from_params(params[:permissions])
@@ -62,7 +62,7 @@ class Admin::RolesController < ApplicationController
         @role.permissions = []
         @role.set_permissions(params[:permissions]) if params[:permissions]
 
-        format.html { redirect_to admin_role_path(@role), notice: 'Papel foi atualizado com sucesso.' }
+        format.html { redirect_to admin_roles_path, notice: 'Papel foi atualizado com sucesso.' }
         format.json { head :no_content }
       else
         permissions_from_params(params[:permissions])
