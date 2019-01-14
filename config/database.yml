@@ -1,26 +1,17 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: rails5_template_development
+  database: sigproext_development
   pool: 5
   host: localhost
-  username: rails5_template
-  password: rails5_template
-
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: rails5_template_test
-  pool: 5
-  host: localhost
-  username: rails5_template
-  password: rails5_template
+  username: sigproext
+  password: sigproext
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: rails5_template_production
+  database: sigproext_production
   pool: 5
   host: localhost
-  username: rails5_template
-  password: rails5_template
+  username: sigproext
+  password: sigproext
