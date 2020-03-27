@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require autocomplete-rails
 //= require turbolinks
 //= require bootstrap
 //= require meiomask
@@ -53,6 +54,18 @@ jQuery(document).on("page:load turbolinks:load", function() {
       },
       dataType: "script"
     });
+  });
+
+  $(".date-picker").each(function() {
+    $(this).setMask({ mask: "99/99/9999" });
+    $(this).datetimepicker({
+      format: 'DD/MM/YYYY',
+      locale: moment.locale('pt-br'),
+      icons: {
+        next: "fa fa-chevron-right",
+        previous: "fa fa-chevron-left"
+      }
+    })
   });
 
   set_masks(null);

@@ -16,4 +16,8 @@
 # end
 ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.irregular 'permission_role', 'permissions_roles'
+  inflect.irregular 'funcao', 'funcoes'
+  inflect.irregular 'tipo', 'tipos'
+  inflect.irregular 'equipe_pessoa', 'equipes_pessoas'
+  inflect.irregular 'habilidade_pessoa', 'habilidades_pessoas'
 end

@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-sm-4">
+    <%= simple_form_for([:admin, @pessoa, @servico], wrapper: :vertical_form, html: { class: "form-vertical", role: "form" }) do |f| %>
+      <%= f.hidden_field :pessoa_id %>
+      <%= f.input :encontro_id, as: :select, collection: @encontros %>
+      <!-- <%= f.hidden_field :pessoa_id, id: 'pessoa_id' %>
+      <%= f.input :nome_pessoa, label:"Digite o nome do participante:", :as => :autocomplete, :url => autocomplete_nome_admin_servicos_path, :id_element => '#pessoa_id' %> -->
+
+      <%= f.collection_radio_buttons :equipe_funcao_id,  EquipeFuncao.all.order('descricao asc'), :id, :descricao %>
+      <!-- <%= f.input :equipe_funcao_id, collection: EquipeFuncao.all, as: :radio_buttons, wrapper: :vertical_radio_and_checkboxes %> -->
+      <div class="form-actions">
+        <%= f.submit "Salvar", :class => 'btn btn-primary' %>
+        <%= link_to "Cancelar", admin_pessoas_path, :class => 'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+</div>

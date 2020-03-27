@@ -1,0 +1,2 @@
+class Funcao < ApplicationRecord
+end

@@ -26,7 +26,7 @@ gem 'meiomask-rails'
 # Authorization system
 gem 'cancancan'
 # Filters system
-gem 'ransack'
+gem 'ransack', '2.0.0' #(1.8.3
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -48,6 +48,7 @@ gem 'rails-i18n'
 gem 'nprogress-rails'
 gem 'devise_ldap_authenticatable'
 gem 'simple_form'
+gem 'rails-jquery-autocomplete'
 
 # Use debugger
 gem 'byebug', group: [:development, :test]

@@ -1,0 +1,2 @@
+class Habilidade < ApplicationRecord
+end

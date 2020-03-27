@@ -4,6 +4,35 @@
     <span class="nav-label">Início</span>
   <% end %>
 </li>
+
+<li class="<%= 'active' if params[:controller] == 'admin/encontros' %>">
+  <%= link_to admin_encontros_path do %>
+    <i class="fa fa-dashboard fa-fw"></i>
+    <span class="nav-label">Encontros</span>
+  <% end %>
+</li>
+
+<li class="<%= 'active' if params[:controller] == 'admin/equipe_funcoes' %>">
+  <%= link_to admin_equipe_funcoes_path do %>
+    <i class="fa fa-dashboard fa-fw"></i>
+    <span class="nav-label">Configuração Equipes</span>
+  <% end %>
+</li>
+
+<li class="<%= 'active' if params[:controller] == 'admin/pessoas' %>">
+  <%= link_to admin_pessoas_path do %>
+    <i class="fa fa-dashboard fa-fw"></i>
+    <span class="nav-label">Pessoas</span>
+  <% end %>
+</li>
+
+<li class="<%= 'active' if params[:controller] == 'admin/servicos' %>">
+  <%= link_to admin_servicos_path do %>
+    <i class="fa fa-dashboard fa-fw"></i>
+    <span class="nav-label">Serviços</span>
+  <% end %>
+</li>
+
 <%
  acessos_selected = params[:controller] == 'admin/uos' || params[:controller] == 'admin/users' || params[:controller] == 'admin/roles'
 %>

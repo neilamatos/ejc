@@ -10,6 +10,23 @@ Rails.application.routes.draw do
       end
     end
     resources :roles
+    resources :encontros
+    resources :pessoas do
+      collection do
+        get 'limpar_filtros', as: 'limpar_filtros'
+        match 'search' => 'styles#index', :via => [:get, :post], :as => :search
+      end
+
+      resources :servicos, except: [:show] do
+      end
+    end
+    resources :equipe_funcoes
+    resources :servicos do
+      collection do
+        get :autocomplete_nome
+      #   post 'search_by_registration', as: 'search_by_registration'
+      end
+    end
   end
 
   # You can have the root of your site routed with "root"

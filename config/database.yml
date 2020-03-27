@@ -1,17 +1,17 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: sigproext_development
+  database: ejc_development
   pool: 5
   host: localhost
-  username: sigproext
-  password: sigproext
+  username: ejc
+  password: ejc
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: sigproext_production
+  database: ejc_production
   pool: 5
   host: localhost
-  username: sigproext
-  password: sigproext
+  username: ejc
+  password: ejc

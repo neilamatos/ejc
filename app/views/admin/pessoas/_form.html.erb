@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-sm-8">
+    <%= simple_form_for([:admin, @pessoa], wrapper: :vertical_form, html: { class: "form-vertical", role: "form" }) do |f| %>
+      <%= f.input :nome %>
+      <%= f.input :endereco, class: 'form-control' %>
+      <%= f.input :bairro, class: 'form-control' %>
+      <%= f.input :telefone_1, class: 'form-control' %>
+      <%= f.input :telefone_2, class: 'form-control' %>
+      <%= f.input :data_nasc, as: :date_picker, input_html: { class: 'date-picker' } %>
+
+      <%= f.input :encontro_id, as: :select, collection: @encontros %>
+      <%= f.input :circulo_id, as: :select, collection: @circulos %>
+      <%= f.input :tipo_id, as: :select, collection: @tipos %>
+
+      <div>
+      <%= f.label :equipe_ids, "Gostaria de trabalhar em que equipe:"%><abbr title="Obrigatório">*</abbr>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= f.collection_check_boxes(:equipe_ids, Equipe.all.order('descricao ASC'), :id, :descricao)  do |b| %>
+          <div class="row">
+            <%= b.label(class: "check_box") do %>
+              <div class="col-xs-1">
+                <%= b.check_box(class: "check_box") %>
+              </div>
+              <div class="col-xs-11">
+                <%= b.object.descricao %>
+              </div>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div>
+      <%= f.label :habilidade_ids, "Gosta de fazer:"%><abbr title="Obrigatório">*</abbr>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= f.collection_check_boxes(:habilidade_ids, Habilidade.all.order('descricao ASC'), :id, :descricao)  do |b| %>
+          <div class="row">
+            <%= b.label(class: "check_box") do %>
+              <div class="col-xs-1">
+                <%= b.check_box(class: "check_box") %>
+              </div>
+              <div class="col-xs-11">
+                <%= b.object.descricao %>
+              </div>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= f.submit "Salvar", :class => 'btn btn-primary' %>
+        <%= link_to "Cancelar", admin_pessoas_path, :class => 'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+</div>

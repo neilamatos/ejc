@@ -1,0 +1,27 @@
+<% content_for :action_buttons do %>
+  <% if can?(:create, "EquipeFuncao".constantize) %>
+    <%= link_to new_admin_equipe_funcao_path, class: 'btn btn-xs btn-primary right' do %>
+      <i class="fa fa-plus"></i>
+      Nova Configuracao
+    <% end %>
+  <% end %>
+<% end %>
+
+<% content_for :search_form do %>
+  <%= search_form_for [:admin, @q], html: {class: "navbar-form navbar-left", id: "filter-form", role: "search" } do |s| %>
+    <div class="form-group margin-right-5">
+      <%= s.label :equipe_descricao_cont, "Nome" %>
+      <%= s.search_field :equipe_descricao_cont, :class => "form-control" %>
+    </div>
+    <%= link_to "", class: "btn btn-sm btn-success btn-filter-search" do %>
+      <i class="fa fa-search"></i>
+      Buscar
+    <% end %>
+    <%= link_to admin_equipe_funcoes_path, class: "btn btn-sm btn-default btn-filter-clear" do %>
+      <i class="fa fa-remove"></i>
+      Limpar
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render :template => 'layouts/search_form_template' %>

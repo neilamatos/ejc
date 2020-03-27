@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pessoa: one
+  encontro: one
+  equipe_funcao: one
+
+two:
+  pessoa: two
+  encontro: two
+  equipe_funcao: two

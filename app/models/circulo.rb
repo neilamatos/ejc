@@ -1,0 +1,2 @@
+class Circulo < ApplicationRecord
+end

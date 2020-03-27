@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # Criando um usuário com a role Super Admin
-default_user_email = "admin@r5template.com"
+default_user_email = "admin@ejc.com"
 default_user_password = "abcd1234"
 
 #Criando a role com todas as permissões
@@ -5675,3 +5675,122 @@ if Uo.count == 0
   Uo.create(nome:"CAMPUS UBAJARA", sigla:"IFCE-UBAJARA")
   Uo.create(nome:"CAMPUS UMIRIM", sigla:"IFCE-UMIRIM")
 end
+
+if Equipe.count == 0
+  Equipe.create(descricao: "Coordenação Geral")
+  Equipe.create(descricao: "Sala")
+  Equipe.create(descricao: "Visitação")
+  Equipe.create(descricao: "Garçons")
+  Equipe.create(descricao: "Mini-bar")
+  Equipe.create(descricao: "Compras")
+  Equipe.create(descricao: "Liturgia")
+  Equipe.create(descricao: "Secretaria")
+  Equipe.create(descricao: "Acolhida")
+  Equipe.create(descricao: "Círculos")
+  Equipe.create(descricao: "Cozinha")
+  Equipe.create(descricao: "Cafezinho")
+  Equipe.create(descricao: "Limpeza")
+end
+
+if Tipo.count == 0
+  Tipo.create(descricao: "Jovem")
+  Tipo.create(descricao: "Casal")
+end
+
+if Funcao.count == 0
+  Funcao.create(descricao: "Coordenação Geral")
+  Funcao.create(descricao: "Coordenação de Equipe")
+  Funcao.create(descricao: "Equipista")
+end
+
+if Circulo.count == 0
+  Circulo.create(descricao: "Círculo Amarelo")
+  Circulo.create(descricao: "Círculo Azul")
+  Circulo.create(descricao: "Círculo Laranja")
+  Circulo.create(descricao: "Círculo Verde")
+  Circulo.create(descricao: "Círculo Vermelho")
+end
+
+if Habilidade.count == 0
+  Habilidade.create(descricao: "Cantar/Tocar")
+  Habilidade.create(descricao: "Cozinhar")
+  Habilidade.create(descricao: "Falar em público")
+  Habilidade.create(descricao: "Digitação")
+  Habilidade.create(descricao: "Desenhar/Pintar")
+  Habilidade.create(descricao: "Limpeza")
+  Habilidade.create(descricao: "Dançar/Animar")
+  Habilidade.create(descricao: "Interpretar")
+  Habilidade.create(descricao: "Coordenar grupos")
+end
+
+EquipeFuncao.all.each do |ef|
+  ef.descricao = ef.equipe.descricao + ' - ' + ef.funcao.descricao
+  ef.save
+end
+
+#Pessoa.create(nome: 'DANIEL PEREIRA', endereco:'R. AMÉRICO VESPUCIO, 312 A SERRINHA', telefone_1:	'3232-7839', telefone_2: '98554-3878', data_nasc:'21/10/03')
+Pessoa.create(nome: 'ELIOMAR FERREIRA', endereco:	'R. DR. JUSTA ARAÚJO, 277 AP 103',bairro: 'SERRINHA', telefone_1:'98678-5425', telefone_2: '98707-1425',data_nasc:'03/03/95')
+# ERICK LOBO	R. ANTONIO BOTELHO, 32 AP 02 – SERRINHA	98905-1503	02/07/03
+# IASMIN LEAL	R. PERU, 890 – ITAOCA	98515-7769/98581-8782	24/10/03
+# ISABELLY MARQUES	R. GUERRA JUNQUEIRO, 911 SERRINHA	98755-1710	15/02/02
+# JOÃO VITOR	R. BENJAMIN FRANKLIN, 186 SERRINHA	99231-7817/3232-7919	28/07/03
+# JOSÉ HENRIQUE	R. ANTONIO BOTELHO, 86 -SERRINHA	98940-0709	05/04/03
+# JULIA MARIA	R. PERU, 895 ITAOCA	98765-9045/99994-6460	02/09/03
+# JÚLIO FILHO	R. BARBA ALADO, 320A SERRINHA	98895-6254/(89)985912683	16/06/02
+# LUCAS MOURÃO	R. ANTONIO FIUZA, 358 ITAOCA	98548-1235	31/03/01
+# NÍCOLAS MACIEL	R. OUTONO, 03 A – PARANGABA	98593-3310/3245-3452	05/11/02
+# PAULO HENRIQUE	R. AMÉRICO VESPUCIO, 144 SERRINHA	98102-5676/3017-5495	15/10/03
+# REBECA LUIZY	R. FAGUNDES VARELA, 691 ITAPERI	98543-6226	20/01/03
+# SAMIRA DE ARAÚJO	R. JÚLIO VERNE, 522 PARANGABA	99150-9976	30/01/02
+<div>
+<%= f.label :equipe_ids, "Gostaria de trabalhar em que equipe:"%><abbr title="Obrigatório">*</abbr>
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <%= f.collection_check_boxes(:equipe_ids, Equipe.all.order('descricao ASC'), :id, :descricao)  do |b| %>
+    <div class="row">
+      <%= b.label(class: "check_box") do %>
+        <div class="col-xs-1">
+          <%= b.check_box(class: "check_box") %>
+        </div>
+        <div class="col-xs-11">
+          <%= b.object.descricao %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<%= f.association :equipe_pessoas,  collection: @equipes, as: :check_boxes %>
+
+<%= f.association :habilidade_pessoas,  collection: @habilidades, as: :check_boxes %>
+
+<div class="form-group margin-right-5">
+  <%= s.label :habilidade_pessoas_habilidade_id_eq, "Habilidades" %>
+  <%= s.select :habilidade_pessoas_habilidade_id_eq, @habilidades, { include_blank: "Todas" }, class: "form-control" %>
+</div>
+<div class="form-group margin-right-5">
+  <%= s.label :servicos_equipe_funcao_id_eq, "Já serviu" %>
+  <%= s.select :servicos_equipe_funcao_id_eq, @equipes_funcoes, { include_blank: "Todas" }, class: "form-control" %>
+</div>
+<div class="form-group margin-right-5">
+  <%= s.label :servicos_equipe_funcao_id_not_eq, "Não serviu" %>
+  <%= s.select :servicos_equipe_funcao_id_not_eq, @equipes_funcoes, { include_blank: "Todas" }, class: "form-control" %>
+</div>
+
+<td>
+  <% p.equipe_pessoas.each do |s|%>
+    <li><%= s.equipe.descricao%></li>
+  <% end %>
+</td>
+<td>
+  <% p.habilidade_pessoas.each do |s|%>
+    <li><%= s.habilidade.descricao%></li>
+  <% end %>
+</td>
+<td>
+  <% p.servicos.each do |s|%>
+    <li><%= s.encontro.descricao%>/<%= s.equipe_funcao.descricao %></li>
+  <% end %>
+</td>

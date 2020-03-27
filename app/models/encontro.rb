@@ -1,0 +1,2 @@
+class Encontro < ApplicationRecord
+end

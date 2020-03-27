@@ -1,0 +1,65 @@
+<% content_for :action_buttons do %>
+  <% if can?(:create, "Pessoa".constantize) %>
+    <%= link_to new_admin_pessoa_path, class: 'btn btn-xs btn-primary right' do %>
+      <i class="fa fa-plus"></i>
+      Nova Pessoa
+    <% end %>
+  <% end %>
+<% end %>
+
+<% content_for :search_form do %>
+  <%= search_form_for [:admin, @q], html: {class: "navbar-form navbar-left", id: "filter-form", role: "search" } do |s| %>
+    <div class="form-group margin-right-5">
+      <%= s.label :nome_cont, "Nome" %>
+      <%= s.search_field :nome_cont, :class => "form-control" %>
+    </div>
+    <div class="form-group margin-right-5">
+      <%= s.label :endereco_cont, "Endereço" %>
+      <%= s.search_field :endereco_cont, :class => "form-control" %>
+    </div>
+    <div class="form-group margin-right-5">
+      <%= s.label :tipo_id_eq, "Tipo" %>
+      <%= s.select :tipo_id_eq, @tipos, { include_blank: "Todas" }, class: "form-control" %>
+    </div>
+    <div class="form-group margin-right-5">
+      <%= s.label :encontro_id_eq, "Encontro" %>
+      <%= s.select :encontro_id_eq, @encontros, { include_blank: "Todas" }, class: "form-control" %>
+    </div>
+    <div class="form-group margin-right-5">
+      <%= s.label :encontro_id_not_eq, "Não é do Encontro" %>
+      <%= s.select :encontro_id_not_eq, @encontros, { include_blank: "Todas" }, class: "form-control" %>
+    </div>
+    <div class="form-group margin-right-5">
+      <%= s.label :circulo_id_eq, "Círculo" %>
+      <%= s.select :circulo_id_eq, @circulos, { include_blank: "Todas" }, class: "form-control" %>
+    </div>
+
+    <div class="form-group margin-right-5">
+      <%= s.label :servicos_equipe_funcao_id_eq, "Já serviu" %>
+      <%= s.select :servicos_equipe_funcao_id_eq, @equipes_funcoes, { include_blank: "Todas" }, class: "form-control" %>
+    </div>
+    <div class="form-group margin-right-5">
+      <%= s.label :servicos_equipe_funcao_id_not_eq, "Não serviu" %>
+      <%= s.select :servicos_equipe_funcao_id_not_eq, @equipes_funcoes, { include_blank: "Todas" }, class: "form-control" %>
+    </div>
+    <div class="form-group margin-right-5">
+      <%= s.label :servicos_encontro_id_eq, "Encontro que vai servir" %>
+      <%= s.select :servicos_encontro_id_eq, @encontros, { include_blank: "Todas" }, class: "form-control" %>
+    </div>
+    <div class="form-group margin-right-5">
+      <%= s.label :servicos_equipe_funcao_id_eq, "Equipe que vai servir" %>
+      <%= s.select :servicos_equipe_funcao_id_eq, @equipes_funcoes, { include_blank: "Todas" }, class: "form-control" %>
+    </div>
+
+    <%= link_to "", class: "btn btn-sm btn-success btn-filter-search" do %>
+      <i class="fa fa-search"></i>
+      Buscar
+    <% end %>
+    <%= link_to limpar_filtros_admin_pessoas_path, class: "btn btn-sm btn-default btn-filter-clear" do %>
+      <i class="fa fa-remove"></i>
+      Limpar
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= render :template => 'layouts/search_form_template' %>

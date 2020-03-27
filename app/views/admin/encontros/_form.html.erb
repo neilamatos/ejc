@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-sm-8">
+    <%= simple_form_for([:admin, @encontro], wrapper: :vertical_form, html: { class: "form-vertical", role: "form" }) do |f| %>
+      <%= f.input :descricao %>
+      <%= f.input :tema %>
+      <%= f.input :local %>
+      <%= f.input :data %>
+      <div class="form-actions">
+        <%= f.submit "Salvar", :class => 'btn btn-primary' %>
+        <%= link_to "Cancelar", admin_encontros_path, :class => 'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+</div>
